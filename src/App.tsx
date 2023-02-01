@@ -17,10 +17,17 @@ function App() {
     setTodoList((prevState) => [newTodoItem, ...prevState]);
   };
 
+  const onDeleteHandler = (todoId: string) => {
+    setTodoList((prevState) => {
+      const filteredArray = prevState.filter((item) => item.id !== todoId);
+      return filteredArray;
+    });
+  };
+
   return (
     <div className="App">
       <NewTodo onAddTodo={onTodoAddHandler} />
-      <Todos items={todoList} />
+      <Todos items={todoList} onDelete={onDeleteHandler} />
     </div>
   );
 }
